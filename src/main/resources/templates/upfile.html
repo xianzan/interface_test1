@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>上传文件</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.3/css/fileinput.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.3/js/fileinput.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.2/js/locales/zh.min.js"></script>
+</head>
+<body>
+<!--导航条-->
+<nav class="navbar navbar-default navbar-fixed-top navbar navbar-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li><a href="/test" style="font-size: 18px">测试首页</a></li>
+            <li class="active"><a href="#" style="font-size: 18px" >文件上传</a></li>
+        </ul>
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <!--小屏幕导航按钮的横杠-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <!--小屏幕导航按钮的横杠-->
+            </button>
+        </div>
+    </div>
+</nav>
+    <div class="container kv-main" style="margin-left: 60px;margin-top: 50px;width: 70%">
+        <h3>文件上传测试:</h3>
+        <form enctype="multipart/form-data" id="form" action="/save" method="post" style="margin-top: 20px">
+            <div class="form-group">
+                <input id="file-1" type="file" name="files" multiple="multiple" class="file-loading"/>
+                <div class="alert alert-block hide" id="warning-block">
+                    <div class="alert alert-success" role="alert" style="margin-top: 10px">文件上传成功！</div>
+                </div>
+                <div class="alert alert-block hide" id="warning-block1">
+                    <div class="alert alert-danger" role="alert" style="margin-top: 10px">文件上传失败！</div>
+                </div>
+                <div class="alert alert-block hide" id="warning-block2">
+                    <div class="alert alert-warning" role="alert" style="margin-top: 10px">文件上传失败！</div>
+                </div>
+            </div>
+
+        </form>
+        <!--标签页区域-->
+        <ul id="myTab" class="nav nav-tabs" role="tablist" style="margin-top: 20px">
+            <li class="active"><a href="#response">Response</a></li>
+            <li><a href="#headers">Headers</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="response">
+                <textarea rows="15" class="form-control" name="textarea2" id="response_result" placeholder="response"
+                          style="background-color:#F5F5F5;border: 1px solid #ccc"></textarea>
+            </div>
+
+            <div class="tab-pane" id="headers">
+                <textarea rows="15" class="form-control" name="textarea2" id="header_result" placeholder="headers"
+                          style="background-color:#F5F5F5;border: 1px solid #ccc"></textarea>
+            </div>
+        </div>
+    </div>
+    <!--/标签页区域-->
+<script>
+    //    initFileInput("file-1", '/save');
+    $(document).ready(function () {
+        //默认显示第一个标签
+        $('#myTab a:first').tab('show');
+        //标签页点击切换
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+    })
+
+    //bootstrap inputfile插件的初始化，使用方法请自行参考官方文档：http://plugins.krajee.com/file-input/demo
+    initFileInput("file-1", '/save');
+
+
+    function initFileInput(ctrlName, uploadUrl) {
+        var control = $('#' + ctrlName);
+        control.fileinput({
+            resizeImage: true,
+            language: 'zh', //设置语言
+            uploadUrl: uploadUrl,
+            allowedFileExtensions: ['jpg', 'png', 'gif', 'txt', 'pdf'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: true,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            maxFileCount: 10,
+            msgFilesTooMany: "选择图片超过了最大数量",
+            maxFileSize: 20000,
+            maxFilePreviewSize: 10240,
+            uploadAsync: true,//开启异步上传
+            showPreview: true,//显示拖拉框
+            elErrorContainer: '#kv-error-1'
+        }).on("filebatchselected", function (event, files) {
+            $('#kv-success-1').html('<h4>Upload Status</h4><ul></ul>').hide();
+        }).on('fileuploaded', function (event, data) {
+            var response_result = $('#response_result');
+            var header_result = $('#header_result');
+            response_result.text("");// 清空数据
+            header_result.text("");
+           // alert(data.data.status);
+            console.log(JSON.stringify(data))
+           // alert();
+            if (data.response.status == "1") {
+                //显示上传结果
+                $("#warning-block").removeClass("hide").delay(2000).hide(500);
+
+                response_result.append("result:\n" + JSON.stringify(data.response.result)); // 添加Html内容，不能用Text 或 Val
+                header_result.append("host: " + data.response.requestHeader.host + " \n \nreferer: " + data.response.requestHeader.referer +
+                    "\n \nconnection: " + data.response.requestHeader.connection + "\n \n accept-language: " + data.response.requestHeader.acceptLanguage +
+                    "\n \n x-requested-with: " + data.response.requestHeader.xRequestedWith + "\n \n user-agent: " + data.response.requestHeader.userAgent +
+                    "\n \n accept-encoding: " + data.response.requestHeader.acceptEncoding + " \n \ncookie: " + data.response.requestHeader.cookie)
+
+            } else {
+                $("#warning-block2").removeClass("hide").delay(2000).hide(500);
+                response_result.append("result:\n" + JSON.stringify(data.result) + "\nstatus:" + status); // 添加Html内容，不能用Text 或 Val
+                response_result.append("result:\n" + JSON.stringify(data.response.result)); // 添加Html内容，不能用Text 或 Val
+                header_result.append("host: " + data.response.requestHeader.host + " \n \nreferer: " + data.response.requestHeader.referer +
+                    "\n \nconnection: " + data.response.requestHeader.connection + "\n \n accept-language: " + data.response.requestHeader.acceptLanguage +
+                    "\n \n x-requested-with: " + data.response.requestHeader.xRequestedWith + "\n \n user-agent: " + data.response.requestHeader.userAgent +
+                    "\n \n accept-encoding: " + data.response.requestHeader.acceptEncoding + " \n \ncookie: " + data.response.requestHeader.cookie)
+            }
+
+        });
+    }
+</script>
+</body>
+</html>

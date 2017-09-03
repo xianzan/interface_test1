@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>接口测试</title>
+
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.3/css/fileinput.css" rel="stylesheet"/>
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.3/js/fileinput.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.4.2/js/locales/zh.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-json/2.4.0/jquery.json.min.js"></script>
+</head>
+<body>
+<!--导航条-->
+<nav class="navbar navbar-default navbar-fixed-top navbar navbar-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#" style="font-size: 18px">测试首页</a></li>
+            <li><a href="/upfile" style="font-size: 18px ">文件上传</a></li>
+        </ul>
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <!--小屏幕导航按钮的横杠-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <!--小屏幕导航按钮的横杠-->
+            </button>
+        </div>
+    </div>
+</nav>
+<!--导航条-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" id="interfaceList" style="margin-top: 50px">
+            <h3>接口列表:</h3>
+            <div id="interface1">
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>1. POST /attribute/document/get</h4>
+                </button>
+            </div>
+            <div id="interface2">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>2. POST /attribute/document/put</h4>
+                </button>
+
+            </div>
+            <div id="interface3">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>3. POST /controls/{serial_number}/configs/date_format</h4>
+                </button>
+
+            </div>
+            <div id="interface4">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>4. POST /controls/{serial_number}/configs/time_format</h4>
+                </button>
+
+            </div>
+            <div id="interface5">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>5. POST /controls/{serial_number}/configs/timeout_to_sleep</h4>
+                </button>
+
+            </div>
+            <div id="interface6">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>6. POST /controls/{serial_number}/log</h4>
+                </button>
+
+            </div>
+            <div id="interface7">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>7. POST /controls/{serial_number}/register_wifi_accesspoint</h4>
+                </button>
+
+            </div>
+            <div id="interface8">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>8. GET /manage/devices</h4>
+                </button>
+
+            </div>
+
+            <div id="interface9">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>9. POST /device/contents</h4>
+                </button>
+            </div>
+            <div id="interface10">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>10.POST /device/indicate</h4>
+                </button>
+            </div>
+            <div id="interface11">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>11.POST /device/screen_shot</h4>
+                </button>
+            </div>
+            <div id="interface12">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>12.POST /device/unindicate</h4>
+                </button>
+            </div>
+            <div id="interface13">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>13.POST /document/delete</h4>
+                </button>
+            </div>
+            <div id="interface14">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>14.POST /document/get</h4>
+                </button>
+            </div>
+            <div id="interface15">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>15.POST /document/info</h4>
+                </button>
+            </div>
+            <div id="interface16">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>16.POST /document/list</h4>
+                </button>
+            </div>
+            <div id="interface17">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>17.POST /document/open</h4>
+                </button>
+            </div>
+            <div id="interface18">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>18.POST /document/put</h4>
+                </button>
+            </div>
+            <div id="interface19">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>19.POST /document/rename</h4>
+                </button>
+            </div>
+            <div id="interface20">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>20.POST /folder/create</h4>
+                </button>
+            </div>
+            <div id="interface21">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>21.POST /folder/delete</h4>
+                </button>
+            </div>
+            <div id="interface22">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>22.POST /folder/rename</h4>
+                </button>
+            </div>
+            <div id="interface23">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>23.GET /manage/devices</h4>
+                </button>
+            </div>
+            <div id="interface24">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>24.POST /manage/devices</h4>
+                </button>
+            </div>
+            <div id="interface25">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>25.PUT /manage/devices/{serial_number}</h4>
+                </button>
+            </div>
+            <div id="interface26">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>26.DELETE /manage/devices/{serial_number}</h4>
+                </button>
+            </div>
+            <div id="interface27">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>27.DELETE /manage/devices/{serial_number}</h4>
+                </button>
+            </div>
+            <div id="interface28">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>28.DELETE /manage/devices/{serial_number}</h4>
+                </button>
+            </div>
+            <div id="interface29">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>29.POST /manage/license</h4>
+                </button>
+            </div>
+            <div id="interface30">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>30.GET /manage/queues</h4>
+                </button>
+            </div>
+            <div id="interface31">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>31.PUT /manage/queues/{id}</h4>
+                </button>
+            </div>
+            <div id="interface32">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>32.GET /system/health</h4>
+                </button>
+            </div>
+            <div id="interface33">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>33.GET /system/info</h4>
+                </button>
+            </div>
+            <div id="interface34">
+                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#myModal">
+                    <h4>34.POST /system/shutdown</h4>
+                </button>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div id="main" style="margin-top: 70px;  width: 100%">
+                <h3>GET和POST测试:</h3>
+                <p>接口：</p>
+                <textarea rows="1" class="form-control" name="textarea1" id="textarea1"></textarea>
+                <span style="color:#ccc;font-size:12px">例：http://ouapi.com/m?a=xx&amp;b=xx；get参数直接加在url后就行。</span>
+                <p>POST参数：</p>
+                <textarea rows="10" class="form-control" name="textarea2" id="textarea2"
+                          placeholder="Json格式"></textarea>
+
+                <!--get和post选择-->
+                <div>
+                    <select name="seltype" id="select" class="form-control"
+                            style="margin-top:15px;float:left;width:49%">
+                        <option value="get">GET</option>
+                        <option value="post">POST</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn"
+                        style="width:100%;height:45px;margin-top:30px;margin-button:20px">提交
+                </button>
+
+                <!--标签页区域-->
+                <ul id="myTab" class="nav nav-tabs" role="tablist" style="margin-top: 20px">
+                    <li class="active"><a href="#response">Response</a></li>
+                    <li><a href="#headers">Headers</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="response">
+            <textarea rows="15" class="form-control" name="textarea2" id="response_result" placeholder="response"
+                      style="background-color:#F5F5F5;font-size: 15px;border: 1px solid #ccc"></textarea>
+                    </div>
+
+                    <div class="tab-pane" id="headers">
+            <textarea rows="15" class="form-control" name="textarea2" id="header_result" placeholder="headers"
+                      style="background-color:#F5F5F5;border: 1px solid #ccc"></textarea>
+                    </div>
+                </div>
+                <!--/标签页区域-->
+                <button type="button" class="btn btn-danger" id="btn1"
+                        style="width:100%;height:40px;margin-top:20px;margin-button:20px">文件上传测试
+                </button>
+                <div style="margin-top: 20px"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel" style="font-weight: 900">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p style="font-weight: 900">接口简介：</p>
+                <p style="font-weight: 900">接口地址：</p>
+                <div style="display:inline">
+                    <input type="text" class="form-control" id="url_text1" value="http://"
+                           style="width: 11%;display:inline"/>
+                    <input type="text" class="form-control" id="url_text2" style="width: 25% ;display:inline"/>
+                    <input type="text" class="form-control" id="url_text3" value="" style="width: 60% ;display:inline"/>
+                </div>
+
+                <p style="margin-top: 10px;font-size: 13px;font-weight: 900" id="post">POST参数：</p>
+                <div id="show">
+                    <div style="margin-top: 10px" id="postrequest" class="form-inline  input-line">
+                        <input type="text" class="form-control" id="key" style="width: 38%;display:inline"
+                               placeholder="key" value=""/>
+
+                        <input type="text" class="form-control" id="value" style="width: 55%;display:inline"
+                               placeholder="value" value=""/>
+                        <!--<span class="glyphicon glyphicon-remove delinput"></span>-->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="closes" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="submit">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="application/javascript">
+    $(document).ready(function () {
+        var url_last = null;
+        var methon = null;
+        //i用于记input标签的数量
+        var i = 1;
+        var postJson = null;
+        var getJson = null;
+        var key1 = new Array()
+        var value = new Array()
+        var process=new Object()
+        var jsonPost = new Object();
+        var user_list = new Array();
+        //1.接口列表被点击
+        $('#interfaceList').children().children('button').click(function () {
+            //获取接口字符串作为原始的url
+            var url = $(this).children().text();
+            //去掉接口的请求方法作为url的第三部分
+            url_last = url.substring(8, url.length);
+            methon = url.substring(3, 7).trim();
+            console.log("methon:"+methon);
+            console.log("url_last:"+url_last);
+            console.log("url:"+url);
+            //作为接口名model的标题
+            $('#myModalLabel').text(url);
+            //去掉接口的请求方法的接口作为url的第三部分
+            $('#url_text3').attr("value", url_last)
+
+            //输入框点击事件
+            $("#postrequest input").click(function () {
+                //点击添加输入框
+                if ($('#key').val() == null) {
+                    $('#post').after('' +
+                        '<div style="margin-top: 10px"  id="postrequest" class="form-inline input-line" >\n' +
+                        '  <input type="text" class="form-control" id="key" style="width: 38%;display:inline" placeholder="key"/> \n' +
+                        '  <input type="text" class="form-control" id="value" style="width: 55%;display:inline" placeholder="value" />\n' +
+                        '  <span class="glyphicon glyphicon-remove delinput" id="delete" ></span>\n' +
+                        '</div>'
+                    );
+                    i++;
+                }
+                console.log("点击input标签i的值:" + i);
+
+                //删除按钮点击事件处理
+                $("#delete").click(function () {
+                    //删除其父节点
+                    $(this).parent().remove();
+                    i--;
+                    console.log("点击删除图标i的值:" + i);
+
+                });
+
+            })
+
+            //获取服务器提供的接口信息：
+            //get请求
+            if (methon == "GET") {
+                $.get("/interface?url=" + url, function (data, status) {
+                    //将Json字符串转化为对象，获取json数组对象的长度，可以获取每一个值
+//                console.log(typeof(data));
+                    var data = jQuery.parseJSON(data);
+                    console.log(typeof(data));
+                    console.log("成功发送get请求");
+
+                });
+
+            } else if (methon == "POST") {
+
+                var j = 0;
+                //post请求,获取POST请求默认的参数
+                $.post("/getpostparam",
+                    {
+                        //提交服务器的接口参数
+                        url: url_last
+                    },
+                    function (data, status) {
+                        console.log("成功发送post请求");
+                        var data = jQuery.parseJSON(data);
+                        //2、遍历Json对象的key与value值获取key的数量
+                        var number = 0;
+                        for (var key in data.result) {
+                            if (key != "process") {
+
+                                var jValue = data.result[key];//key所对应的value
+
+                                key1[number] = key;
+                                value[number] = jValue;
+                                console.log("key:" + key + "| key[number]:" + key1[number]);
+                                console.log("value:" + jValue + "| value[number]:" + value[number]);
+                                number++;
+                                i++;
+                            } else if (key == "process") {
+                                var jValue = data.result[key];
+                                key1[number] = key;
+                                number++;
+                                for (var key in jValue) {
+                                    key1[number] = key;
+                                    var Value = jValue[key];//key所对应的value
+                                    value[number] = Value;
+                                    console.log("key:" + key + "| key[number]:" + key1[number]);
+                                    console.log("value:" + Value + "| value[number]:" + value[number]);
+                                    number++;
+                                    i++;
+                                }
+                            }
+                        }
+                        j = number;
+                        console.log("j:" + j);
+
+                        //根据服务器的json对象的key个数生成相同数量-1的input标签
+                        while (j > 0) {
+                            console.log("key:" + key1[j - 1] + "|" + "value:" + value[j - 1]);
+                            $('#key').attr("value", key1[j - 1]);
+                            $('#value').attr("value", value[j - 1]);
+
+                            if (j > 1) {
+                                if(key1[j - 1] == "process") {
+                                    $('#postrequest').append('<p style="font-weight: 900">process:</p>');
+
+                                }else if(key1[j - 1] != "process"){
+
+                                    $('#post').after('' +
+                                        '<div style="margin-top: 10px"  id="postrequest" class="form-inline input-line" >\n' +
+                                        '  <input type="text" class="form-control" id="key" style="width: 38%;display:inline" placeholder="key"/> \n' +
+                                        '  <input type="text" class="form-control" id="value" style="width: 55%;display:inline" placeholder="value" />\n' +
+                                        '  <span class="glyphicon glyphicon-remove delinput" id="delete" ></span>\n' +
+                                        '</div>'
+                                    );
+                                }
+                            }
+                            j--;
+
+                        }
+                        console.log("number:" + number);
+                    });
+            }
+        });
+        //删除按钮点击事件处理
+        $("#delete").click(function () {
+            //删除其父节点
+            $(this).parent().remove();
+            i--;
+            console.log("点击删除图标i的值:" + i);
+
+        });
+        //2.关闭按钮被点击事件处理
+        $("#closes").click(function () {
+            console.log("关闭按钮被点击:" + i);
+            //移除之前添加的input标签
+            while (i > 2) {
+                $('#postrequest').remove();
+                i--;
+            }
+            i = 1;
+        });
+
+        //3.提交按钮被点击处理：
+        $('#submit').click(function () {
+            //组装url：http://+用户输入部分的url+接口的url
+            var url_input = $('#url_text2').val();
+            //组装url
+            var real_url = "http://" + url_input + url_last;
+            console.log("real_url:" + real_url + "\n方法为：" + methon);
+
+            //提交请求，根据接口的方法进行分类提交：
+            //get请求
+            if (methon == "GET") {
+                $.get("/interface?url=" + url, function (data, status) {
+                    //将Json字符串转化为对象，获取json数组对象的长度，可以获取每一个值
+                    console.log(typeof(data));
+                    var data = jQuery.parseJSON(data);
+                    console.log(typeof(data));
+
+                });
+
+            } else if (methon == "POST") {
+                //post请求,获取POST请求默认的参数
+                var result = null;
+                var k = 0;
+                var key = null;
+                var i = 0;
+                //获取用户输入的参数
+                $('input[id="value"]').each(function () {
+                    value[k] = $(this).val();
+                    // result = result+ $(this).val();
+//                    console.log("key:" + key1[k] + "|value[k]:" + value[k]+"|value[k+1]"+value[k+1]);
+                    //如果读到值为process，用i进行记录下标，并将下标加一
+                    if(key1[k]=="user_list"){
+                        user_list.push(value[k]);
+                        jsonPost["user_list"]=user_list;
+                        k++;
+                    }
+                    if(key1[k]=="process"){
+                        i = k;
+                        i++;
+                    }
+                    //如果这个下标大于k
+                    if(i>k){
+                        //则将下一个value付给下一个key，进行process对象的组装
+                        process[key1[k]] = value[k];
+
+                        //再将i值自加一，使其永远大于k
+                        i++;
+                    }else{
+                        //否则就将值直接赋给key，进行jsonPost对象的组装
+                        jsonPost[key1[k]] = value[k];
+                    }
+                    k++;
+                });
+                //进行jsonPost的组装，将process对象作为作为一个参数进行json对象组装
+                jsonPost["process"]=process;
+                var strjson = $.toJSON(jsonPost);
+                console.log("strjson:"+strjson);
+                $.post("/setpostparam",
+                    {
+                        real_url:real_url,
+                        url: url_last,
+                        json: strjson
+                    },
+                    function (data, status) {
+                        //  var data = jQuery.parseJSON(data);
+                        console.log("data:"+data);
+                        var data = jQuery.parseJSON(data);
+                        console.log(typeof(data));
+                        var response_result = $('#response_result');
+                        var header_result = $('#header_result');
+                        response_result.text("");// 清空数据
+                        header_result.text("");
+                        response_result.append("result:\n" + JSON.stringify(data.result) + "\nstatus:" + status); // 添加Html内容，不能用Text 或 Val
+                        header_result.append("host: " + data.requestHeader.host + " \n \nreferer: " + data.requestHeader.referer +
+                            "\n \nconnection: " + data.requestHeader.connection + "\n \n accept-language: " + data.requestHeader.acceptLanguage +
+                            "\n \n x-requested-with: " + data.requestHeader.xRequestedWith + "\n \n user-agent: " + data.requestHeader.userAgent +
+                            "\n \n accept-encoding: " + data.requestHeader.acceptEncoding + " \n \ncookie: " + data.requestHeader.cookie)
+
+                    });
+
+            }
+        })
+
+        //默认显示第一个标签
+        $('#myTab a:first').tab('show');
+        //标签页点击切换
+        $('#myTab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
+
+        $('#btn1').click(function () {
+            window.location.href = "/upfile.html";
+        });
+
+        $('#btn').click(function () {
+            var url = $('#textarea1').val();
+            var methon = $('#select').val();
+            var json = $('#textarea2').val();
+
+            if (methon == "get") {
+                $.get("/interface?url=" + url, function (data, status) {
+                    //将Json字符串转化为对象，获取json数组对象的长度，可以获取每一个值
+                    console.log(typeof(data));
+                    var data = jQuery.parseJSON(data);
+                    console.log(typeof(data));
+                    var response_result = $('#response_result');
+                    var header_result = $('#header_result');
+                    response_result.text("");// 清空数据
+                    header_result.text("");
+                    response_result.append("result:\n" + JSON.stringify(data.result) + "\nstatus:" + status); // 添加Html内容，不能用Text 或 Val
+                    header_result.append("host: " + data.requestHeader.host + " \n \nreferer: " + data.requestHeader.referer +
+                        "\n \nconnection: " + data.requestHeader.connection + "\n \n accept-language: " + data.requestHeader.acceptLanguage +
+                        "\n \n x-requested-with: " + data.requestHeader.xRequestedWith + "\n \n user-agent: " + data.requestHeader.userAgent +
+                        "\n \n accept-encoding: " + data.requestHeader.acceptEncoding + " \n \ncookie: " + data.requestHeader.cookie)
+                });
+            }
+            else if (methon == "post") {
+                $.post("/interface",
+                    {
+                        json: json,
+                        url: url
+                    },
+                    function (data, status) {
+                        var data = jQuery.parseJSON(data);
+                        var response_result = $('#response_result');
+                        var header_result = $('#header_result');
+                        response_result.text("");// 清空数据
+                        header_result.text("");
+                    });
+            }
+
+        })
+    });
+
+</script>
+</body>
+</html>
